@@ -1,12 +1,13 @@
 import { createContext, useEffect, useState } from 'react'
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from '@firebase/auth'
+import app  from '../firebase'
 
 export const AuthContext = createContext()
 
 export const AuthProvider = function(props) {
     const [user, setUser] = useState({ loggedIn: false })
 
-    const auth = getAuth()
+    const auth = getAuth(app)
     const provider = new GoogleAuthProvider()
 
     const login = async function() {

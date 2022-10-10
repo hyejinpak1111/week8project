@@ -10,7 +10,7 @@ export default function Weather(props) {
                             <h2 >{ props.data.name }</h2>
                         )
                         :
-                        <Link to={`https://api.openweathermap.org/data/2.5/weather?q=${props.data.name}&appid=e325c95def146ec0f6463c1ba75ad893`}>{ props.data.name}</Link>
+                        <Link to={`https://api.openweathermap.org/data/2.5/weather?q=${props.data.name}&appid=72c6ee3c4d2e4b2e112baa900ac495e8`}>{ props.data.name}</Link>
                     }
                 </div>
                 {

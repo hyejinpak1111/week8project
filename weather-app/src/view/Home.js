@@ -1,9 +1,11 @@
 import WeatherForm from "../components/WeatherForm"
 import { useState, useEffect, useContext } from 'react';
 import { DataContext } from '../contexts/DataProvider';
+import { AuthContext } from "../contexts/AuthProvider";
 
 export default function Home() {
     const { getLocation } =useContext(DataContext)
+    const { user } =useContext(AuthContext)
     const [location, setLocation] = useState({})
     // const { name } = useParams()
 
@@ -22,10 +24,19 @@ export default function Home() {
     return(
         <div className="container">
             <h1 className="mb-3" >Welcome to Victor's Weather App!</h1>
-            <h2>Please Login to continue</h2>
-            <h5 className="mb-5">The app is currently still under maintenance so the functionality isn't exactly quite there yet. Emphasis on YET</h5>
+            {
+                  (user.loggedIn)?
+                  (
+                    <>
+                         <p>Welcome, { user.username }</p>
+                         <WeatherForm />
+                    </>
+                  )
+                  :
+                  'Please Login to continue'
+
+            }
             
-            <WeatherForm />
         </div>
     )
 }

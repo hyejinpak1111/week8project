@@ -6,8 +6,8 @@ export const DataContext = createContext()
 
 export const DataProvider = function(props) {
     const [weatherInfo, setWeatherInfo] = useState([])
-    // const { user } = useContext(AuthContext)
-    // const db = getFirestore()
+    const { user } = useContext(AuthContext)
+    const db = getFirestore()
 
     useEffect(() => {
         fetch('https://api.openweathermap.org/data/2.5/weather?q=chicago&appid=331127d71ded2112a39dbf8df6309b69')
@@ -25,16 +25,17 @@ export const DataProvider = function(props) {
     //     console.log(data)
     // }
     
-    // const addLocation = async function(location) {
-    //     const name = {
-    //         location:location
-    //     }
-    //     const collectionRef = collection(db, 'users', user.uid, 'location')
-    //     const docRef = await addDoc(collectionRef, name)
-    // }
+    const addLocation = async function(location) {
+        const name = {
+            location:location
+        }
+        const collectionRef = collection(db, 'users', user.uid, 'location')
+        const docRef = await addDoc(collectionRef, name)
+    }
 
     const value = {
-        weatherInfo: weatherInfo
+        weatherInfo: weatherInfo,
+        addLocation: addLocation
 
         
     }
